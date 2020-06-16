@@ -15,5 +15,15 @@
   <%= @user.status %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%- if @user.status == 'new' %>
+  <p>
+    <%= link_to 'Make a payment', paid_user_path, method: :put %>
+  </p>
+<%- end %>
+
+
+<%- if @user.status != 'cancelled' %>
+  <p>
+    <%= link_to 'Cancel a payment', cancelled_user_path, method: :put %>
+  </p>
+<%- end %>
